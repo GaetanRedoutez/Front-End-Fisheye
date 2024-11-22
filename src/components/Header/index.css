@@ -1,0 +1,17 @@
+.Header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	height: 90px;
+	margin: 0 100px;
+}
+
+.header-logo {
+	height: 50px;
+}
+
+.header-texte {
+	color: #901c1c;
+	font-size: 36px;
+}
