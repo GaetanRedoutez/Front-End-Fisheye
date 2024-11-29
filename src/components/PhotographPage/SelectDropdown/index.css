@@ -1,0 +1,38 @@
+.select-dropdown {
+	width: 140px;
+	height: 50px;
+	border-radius: 5px;
+	background-color: #901c1c;
+	color: #ffffff;
+	border: none;
+	padding: 10px 15px;
+	margin: 0;
+	font-size: 18px;
+	text-align: left;
+	cursor: pointer;
+	position: relative;
+}
+
+.select-dropdown:focus {
+	border-radius: 5px 5px 0 0;
+}
+
+.dropdown-options {
+	position: absolute;
+	width: 140px;
+	background-color: #901c1c;
+	color: #ffffff;
+	border-radius: 0 0 5px 5px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	z-index: 1000;
+	overflow: hidden;
+}
+
+.dropdown-option {
+	padding: 10px 15px;
+	font-size: 18px;
+	font-weight: 500;
+	cursor: pointer;
+}

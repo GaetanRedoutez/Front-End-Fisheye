@@ -1,0 +1,38 @@
+.photograph-article {
+	display: flex;
+	flex: 1 1 calc(33% - 1rem);
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 1rem;
+	box-sizing: border-box;
+	max-width: calc(33% - 1rem);
+	gap: 5px;
+}
+
+.photograph-img {
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+
+.photograph-name {
+	color: #d3573c;
+	font-size: 36px;
+}
+
+.photograph-location {
+	color: #901c1c;
+	font-size: 13px;
+}
+
+.photograph-tagline {
+	color: #000;
+	font-size: 10px;
+}
+
+.photograph-price {
+	color: #757575;
+	font-size: 9px;
+}
