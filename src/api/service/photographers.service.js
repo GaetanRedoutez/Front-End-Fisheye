@@ -45,7 +45,6 @@ export const getMediaByPhotographerId = async (photographerId) => {
 
 		const data = await response.json();
 
-		// Filtrer les médias correspondant au photographe
 		const media = data.media.filter((item) => item.photographerId === +photographerId);
 
 		if (media.length === 0) {

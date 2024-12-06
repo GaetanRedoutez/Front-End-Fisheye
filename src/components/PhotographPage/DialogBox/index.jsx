@@ -2,7 +2,7 @@ import { faX } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './index.css';
 
-const DialogBox = ({ isOpen, onClose, photograph }) => {
+export const DialogBox = ({ isOpen, onClose, photograph }) => {
 	if (!isOpen) return null;
 
 	return (
@@ -22,5 +22,3 @@ const DialogBox = ({ isOpen, onClose, photograph }) => {
 		</div>
 	);
 };
-
-export default DialogBox;
