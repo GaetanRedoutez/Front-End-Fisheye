@@ -12,7 +12,6 @@ export const PhotographBody = ({ id }) => {
 	useEffect(() => {
 		const fetch = async () => {
 			const data = await getPhotographerById(id);
-			console.log('data', data);
 			setPhotograph(data);
 		};
 		fetch();

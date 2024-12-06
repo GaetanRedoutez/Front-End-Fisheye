@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import './index.css';
+import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const SelectDropdown = ({ filter, setFilter }) => {
 	const options = ['Popularité', 'Date', 'Prix'];
@@ -19,7 +21,9 @@ export const SelectDropdown = ({ filter, setFilter }) => {
 				aria-expanded={isOpen}
 				onClick={() => setIsOpen((state) => !state)}
 			>
-				{filter} ▼
+				<div className="select-dropdown-title">
+					{filter} <FontAwesomeIcon icon={isOpen ? faCaretUp : faCaretDown} aria-label="dropdown" />
+				</div>
 			</button>
 			{isOpen && (
 				<ul className="dropdown-options" role="listbox">

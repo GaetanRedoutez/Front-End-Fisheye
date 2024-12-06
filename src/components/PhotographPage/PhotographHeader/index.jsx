@@ -3,7 +3,6 @@ import './index.css';
 //TODO MODAL CONTACT
 
 export const PhotographHeader = ({ photograph }) => {
-	console.log(photograph);
 	return (
 		<div className="photograph-header">
 			<div>
@@ -16,12 +15,14 @@ export const PhotographHeader = ({ photograph }) => {
 				</div>
 			</div>
 			<button className="photograph-header-button">Contactez-moi</button>
-			<img
-				src={`/assets/photographers/${normalizeName(photograph.name)}.jpg`}
-				alt="Image de profil du photographe"
-				loading="lazy"
-				className="photograph-img"
-			/>
+			<div className="photograph-img-container">
+				<img
+					src={`/assets/photographers/${normalizeName(photograph.name)}.jpg`}
+					alt={photograph.name}
+					loading="lazy"
+					className="photograph-img"
+				/>
+			</div>
 		</div>
 	);
 };

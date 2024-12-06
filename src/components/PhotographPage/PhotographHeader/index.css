@@ -33,9 +33,16 @@
 	border-radius: 5px;
 	border: none;
 	cursor: pointer;
-	background: #901c1c;
 
 	font-size: 20px;
 	font-weight: 700;
+
+	background: #901c1c;
 	color: #fff;
+	transition: all 0.2s ease-in-out;
+}
+
+.photograph-header-button:hover {
+	background: #d3573c;
+	color: #000;
 }

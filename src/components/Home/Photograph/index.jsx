@@ -6,12 +6,14 @@ export const Photograph = (photograph) => {
 	return (
 		<>
 			<Link to={`/photograph/${photograph.id}`}>
-				<img
-					src={`/assets/photographers/${normalizeName(photograph.name)}.jpg`}
-					alt={photograph.name}
-					loading="lazy"
-					className="photograph-img"
-				/>
+				<div className="photograph-img-container">
+					<img
+						src={`/assets/photographers/${normalizeName(photograph.name)}.jpg`}
+						alt={photograph.name}
+						loading="lazy"
+						className="photograph-img"
+					/>
+				</div>
 			</Link>
 			<div className="photograph-name">{photograph.name}</div>
 			<div className="photograph-location">
