@@ -1,6 +1,7 @@
 import { faX } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './index.css';
+import { ContactForm } from '../ContactForm';
 
 export const DialogBox = ({ isOpen, onClose, photograph }) => {
 	if (!isOpen) return null;
@@ -17,7 +18,7 @@ export const DialogBox = ({ isOpen, onClose, photograph }) => {
 						<FontAwesomeIcon icon={faX} onClick={onClose} />
 					</div>
 				</div>
-				<div>Formulaire de contact</div>
+				<ContactForm />
 			</div>
 		</div>
 	);

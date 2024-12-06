@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { normalizeName } from '../../../utils/normalizeString';
 import './index.css';
-import DialogBox from '../DialogBox';
+import { DialogBox } from '../DialogBox';
 //TODO MODAL CONTACT
 
 export const PhotographHeader = ({ photograph }) => {
