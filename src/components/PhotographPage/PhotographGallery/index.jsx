@@ -1,21 +1,12 @@
-import { useEffect, useMemo, useState } from 'react';
-import './index.css';
-import { SelectDropdown } from '../SelectDropdown';
-import { getMediaByPhotographerId } from '../../../api/service/photographers.service';
-import { normalizeName } from '../../../utils/normalizeString';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useMemo, useState } from 'react';
+import { normalizeName } from '../../../utils/normalizeString';
+import { SelectDropdown } from '../SelectDropdown';
+import './index.css';
 
-export const PhotographGallery = ({ photograph }) => {
+export const PhotographGallery = ({ photograph, mediaItems }) => {
 	const [filter, setFilter] = useState('Popularité');
-	const [mediaItems, setMediaItems] = useState();
-	useEffect(() => {
-		const fetch = async () => {
-			const data = await getMediaByPhotographerId(photograph.id);
-			setMediaItems(data);
-		};
-		fetch();
-	}, [photograph.id]);
 
 	const sortedMedia = useMemo(() => sortMedia(mediaItems, filter), [filter, mediaItems]);
 
@@ -28,7 +19,6 @@ export const PhotographGallery = ({ photograph }) => {
 			{mediaItems && (
 				<section className="gallery-section">
 					{sortedMedia.map((item) => {
-						console.log(item.date, item.price, item.likes);
 						const mediaType = Object.keys(item).find(
 							(k) => k.includes('image') || k.includes('video')
 						);
