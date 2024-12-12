@@ -4,10 +4,18 @@ import { useMemo, useState } from 'react';
 import { normalizeName } from '../../../utils/normalizeString';
 import { SelectDropdown } from '../SelectDropdown';
 import './index.css';
+import { LightBoxModal } from '../LightBoxModal';
 
 export const PhotographGallery = ({ photograph, mediaItems }) => {
 	const [filter, setFilter] = useState('Popularité');
+	const [lightBoxOpen, setLightBoxOpen] = useState(false);
+	const [lightBoxIndex, setLightBoxIndex] = useState(0);
 
+	const openLightBox = (index) => {
+		setLightBoxIndex(index);
+		setLightBoxOpen(true);
+	};
+	const closeLightBox = () => setLightBoxOpen(false);
 	const sortedMedia = useMemo(() => sortMedia(mediaItems, filter), [filter, mediaItems]);
 
 	return (
@@ -18,7 +26,7 @@ export const PhotographGallery = ({ photograph, mediaItems }) => {
 			</div>
 			{mediaItems && (
 				<section className="gallery-section">
-					{sortedMedia.map((item) => {
+					{sortedMedia.map((item, index) => {
 						const mediaType = Object.keys(item).find(
 							(k) => k.includes('image') || k.includes('video')
 						);
@@ -27,47 +35,76 @@ export const PhotographGallery = ({ photograph, mediaItems }) => {
 						}`;
 
 						return (
-							<article key={item.id} className="gallery-article">
+							<article
+								key={item.id}
+								className="gallery-article"
+								onClick={() => openLightBox(index)}
+							>
 								<MediaFactory
 									type={mediaType}
 									url={mediaUrl}
 									title={item.title}
 									likes={item.likes}
+									showDescription={true}
+									className="gallery-media"
 								/>
 							</article>
 						);
 					})}
 				</section>
 			)}
+			<LightBoxModal
+				isOpen={lightBoxOpen}
+				onClose={closeLightBox}
+				media={mediaItems}
+				initialIndex={lightBoxIndex}
+				photographName={photograph.name}
+			/>
 		</div>
 	);
 };
 
-const MediaFactory = ({ type, url, title, likes }) => {
+export const MediaFactory = ({ type, url, title, likes, showDescription, className }) => {
 	switch (type) {
 		case 'image':
-			return <ImageMedia url={url} title={title} likes={likes} />;
+			return (
+				<ImageMedia
+					url={url}
+					title={title}
+					likes={likes}
+					showDescription={showDescription}
+					className={className}
+				/>
+			);
 		case 'video':
-			return <VideoMedia url={url} title={title} likes={likes} />;
+			return (
+				<VideoMedia
+					url={url}
+					title={title}
+					likes={likes}
+					showDescription={showDescription}
+					className={className}
+				/>
+			);
 		default:
 			return <p>Type de média non supporté</p>;
 	}
 };
 
-const ImageMedia = ({ url, title, likes }) => (
+const ImageMedia = ({ url, title, likes, showDescription, className }) => (
 	<div>
-		<img src={url} alt={title} className="gallery-media" loading="lazy" />
-		<MediaDescription title={title} likes={likes} />
+		<img src={url} alt={title} className={className} loading="lazy" />
+		{showDescription ? <MediaDescription title={title} likes={likes} /> : <></>}
 	</div>
 );
 
-const VideoMedia = ({ url, title, likes }) => (
+const VideoMedia = ({ url, title, likes, showDescription, className }) => (
 	<div>
-		<video controls className="gallery-media" loading="lazy">
+		<video controls className={className} loading="lazy">
 			<source src={url} type="video/mp4" />
 			Votre navigateur ne supporte pas les vidéos.
 		</video>
-		<MediaDescription title={title} likes={likes} />
+		{showDescription ? <MediaDescription title={title} likes={likes} /> : <></>}
 	</div>
 );
 
