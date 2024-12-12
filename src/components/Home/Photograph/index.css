@@ -17,8 +17,8 @@
 .photograph-img {
 	width: 200px;
 	height: 200px;
-	object-fit: cover;
-	transform: scale(1.2);
+	object-fit: contain;
+	transform: scale(1.8);
 }
 
 .photograph-name {

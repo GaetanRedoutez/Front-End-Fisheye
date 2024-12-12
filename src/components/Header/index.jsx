@@ -6,10 +6,10 @@ export const Header = () => {
 
 	return (
 		<div className="Header">
-			<a href="/home">
+			<a href="/">
 				<img src="/assets/images/logo.png" alt="Logo Fisheye" className="header-logo" />
 			</a>
-			{location.pathname === '/home' && <div className="header-texte">Nos photographes</div>}
+			{location.pathname === '/' && <div className="header-texte">Nos photographes</div>}
 		</div>
 	);
 };

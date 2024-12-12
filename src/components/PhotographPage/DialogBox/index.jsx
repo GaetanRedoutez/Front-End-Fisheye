@@ -10,13 +10,13 @@ export const DialogBox = ({ isOpen, onClose, photograph }) => {
 		<div className="dialog-overlay">
 			<div className="dialog-box">
 				<div className="dialog-header">
-					<h2 className="dialog-title">
-						<div>Contactez-moi</div>
-						<div>{photograph.name}</div>
-					</h2>
-					<div className="dialog-close">
-						<FontAwesomeIcon icon={faX} onClick={onClose} />
+					<div className="dialog-title">
+						<h1>Contactez-moi</h1>
+						<div className="dialog-close">
+							<FontAwesomeIcon icon={faX} onClick={onClose} className="dialog-close-icon" />
+						</div>
 					</div>
+					<div>{photograph.name}</div>
 				</div>
 				<ContactForm />
 			</div>

@@ -1,7 +1,9 @@
+import './index.css';
+
 export const ContactForm = () => {
 	return (
 		<>
-			<form action="" onSubmit={(e) => e.preventDefault()}>
+			<form action="" onSubmit={(e) => e.preventDefault()} className="contact-form">
 				<div className="form-input">
 					<label htmlFor="firstName">Prénom</label>
 					<input type="text" name="firstName" />
@@ -18,7 +20,9 @@ export const ContactForm = () => {
 					<label htmlFor="message">Message</label>
 					<input type="text" name="message" />
 				</div>
-				<button type="submit">Envoyer</button>
+				<button type="submit" className="button-form-submit">
+					Envoyer
+				</button>
 			</form>
 		</>
 	);

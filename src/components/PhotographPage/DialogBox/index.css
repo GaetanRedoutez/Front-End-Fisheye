@@ -22,21 +22,32 @@
 }
 
 .dialog-title {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.dialog-title h1 {
+	font-size: 64px;
+	font-weight: 400;
+	margin: 0;
+}
+.dialog-header {
 	display: flex;
 	flex-direction: column;
 	align-items: start;
 	font-size: 64px;
 	font-weight: 400;
-	margin: 0;
-}
-
-.dialog-header {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
 	margin-bottom: 20px;
 }
 
 .dialog-close {
 	cursor: pointer;
+}
+
+.dialog-close-icon {
+	color: white;
+	font-size: 42px;
 }
