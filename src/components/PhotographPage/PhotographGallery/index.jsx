@@ -35,17 +35,13 @@ export const PhotographGallery = ({ photograph, mediaItems }) => {
 						}`;
 
 						return (
-							<article
-								key={item.id}
-								className="gallery-article"
-								onClick={() => openLightBox(index)}
-							>
+							<article key={item.id} className="gallery-article">
 								<MediaFactory
 									type={mediaType}
 									url={mediaUrl}
-									title={item.title}
-									likes={item.likes}
+									item={item}
 									showDescription={true}
+									openLightBox={() => openLightBox(index)}
 									className="gallery-media"
 								/>
 							</article>
@@ -64,26 +60,26 @@ export const PhotographGallery = ({ photograph, mediaItems }) => {
 	);
 };
 
-export const MediaFactory = ({ type, url, title, likes, showDescription, className }) => {
+export const MediaFactory = ({ type, url, item, showDescription, className, openLightBox }) => {
 	switch (type) {
 		case 'image':
 			return (
 				<ImageMedia
 					url={url}
-					title={title}
-					likes={likes}
+					item={item}
 					showDescription={showDescription}
 					className={className}
+					openLightBox={openLightBox}
 				/>
 			);
 		case 'video':
 			return (
 				<VideoMedia
 					url={url}
-					title={title}
-					likes={likes}
+					item={item}
 					showDescription={showDescription}
 					className={className}
+					openLightBox={openLightBox}
 				/>
 			);
 		default:
@@ -91,30 +87,33 @@ export const MediaFactory = ({ type, url, title, likes, showDescription, classNa
 	}
 };
 
-const ImageMedia = ({ url, title, likes, showDescription, className }) => (
+const ImageMedia = ({ url, item, showDescription, className, openLightBox }) => (
 	<div>
-		<img src={url} alt={title} className={className} loading="lazy" />
-		{showDescription ? <MediaDescription title={title} likes={likes} /> : <></>}
+		<img src={url} alt={item.title} className={className} loading="lazy" onClick={openLightBox} />
+		{showDescription ? <MediaDescription item={item} /> : <></>}
 	</div>
 );
 
-const VideoMedia = ({ url, title, likes, showDescription, className }) => (
+const VideoMedia = ({ url, item, showDescription, className, openLightBox }) => (
 	<div>
-		<video controls className={className} loading="lazy">
+		<video controls className={className} loading="lazy" onClick={openLightBox}>
 			<source src={url} type="video/mp4" />
 			Votre navigateur ne supporte pas les vidéos.
 		</video>
-		{showDescription ? <MediaDescription title={title} likes={likes} /> : <></>}
+		{showDescription ? <MediaDescription item={item} /> : <></>}
 	</div>
 );
 
-const MediaDescription = ({ title, likes }) => {
+const MediaDescription = ({ item }) => {
+	const [likes, setLikes] = useState(item.likes);
+
+	const handleLike = () => setLikes(likes + 1);
 	return (
 		<div className="media-description">
-			<div className="media-description-title">{title}</div>
+			<div className="media-description-title">{item.title}</div>
 			<div className="media-description-likes">
 				<div>{likes}</div>
-				<FontAwesomeIcon icon={faHeart} aria-label="likes" />
+				<FontAwesomeIcon icon={faHeart} aria-label="likes" onClick={handleLike} />
 			</div>
 		</div>
 	);

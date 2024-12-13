@@ -1,9 +1,17 @@
 import './index.css';
 
 export const ContactForm = () => {
+	const submit = (e) => {
+		e.preventDefault();
+
+		const formData = new FormData(e.target);
+		const formObject = Object.fromEntries(formData.entries());
+
+		console.log('Champs soumis :', formObject);
+	};
 	return (
 		<>
-			<form action="" onSubmit={(e) => e.preventDefault()} className="contact-form">
+			<form action="" onSubmit={submit} className="contact-form">
 				<div className="form-input">
 					<label htmlFor="firstName">Prénom</label>
 					<input type="text" name="firstName" />
@@ -18,7 +26,7 @@ export const ContactForm = () => {
 				</div>
 				<div className="form-input">
 					<label htmlFor="message">Message</label>
-					<input type="text" name="message" />
+					<input type="text" name="message" className="form-messsage" />
 				</div>
 				<button type="submit" className="button-form-submit">
 					Envoyer
