@@ -1,7 +1,7 @@
 .photograph-data {
 	position: fixed;
 	bottom: 0;
-	right: calc((100vw - 1440px) / 2);
+	right: 24px;
 	margin-right: 24px;
 	width: 376px;
 	height: 69px;

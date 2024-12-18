@@ -15,8 +15,15 @@ export const PhotographGallery = ({ photograph, mediaItems }) => {
 		setLightBoxIndex(index);
 		setLightBoxOpen(true);
 	};
+
 	const closeLightBox = () => setLightBoxOpen(false);
-	const sortedMedia = useMemo(() => sortMedia(mediaItems, filter), [filter, mediaItems]);
+
+	const sortedMedia = useMemo(() => {
+		return sortMedia(mediaItems, filter).map((item) => ({
+			...item,
+			originalIndex: mediaItems.findIndex((media) => media.id === item.id),
+		}));
+	}, [filter, mediaItems]);
 
 	return (
 		<div className="photograph-gallery">
@@ -41,7 +48,7 @@ export const PhotographGallery = ({ photograph, mediaItems }) => {
 									url={mediaUrl}
 									item={item}
 									showDescription={true}
-									openLightBox={() => openLightBox(index)}
+									openLightBox={() => openLightBox(sortedMedia[index].originalIndex)}
 									className="gallery-media"
 								/>
 							</article>

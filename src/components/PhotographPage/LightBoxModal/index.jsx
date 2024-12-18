@@ -1,46 +1,80 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './index.css';
 import { MediaFactory } from '../PhotographGallery';
 import { normalizeName } from '../../../utils/normalizeString';
 import { faAngleLeft, faAngleRight, faX } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export const LightBoxModal = ({ isOpen, onClose, media, initialIndex, photographName }) => {
-	console.log(media);
+export const LightBoxModal = ({
+	isOpen,
+	onClose,
+	media = [],
+	initialIndex = 0,
+	photographName,
+}) => {
 	const [currentIndex, setCurrentIndex] = useState(initialIndex);
 
-	if (!isOpen) return null;
+	useEffect(() => {
+		if (Array.isArray(media) && media.length > 0) {
+			setCurrentIndex(Math.min(initialIndex, media.length - 1));
+		}
+	}, [initialIndex, media]);
 
 	const handleNext = (e) => {
 		e.stopPropagation();
-		setCurrentIndex((prevIndex) => (prevIndex + 1) % media.length);
+		if (media.length > 0) {
+			setCurrentIndex((prevIndex) => (prevIndex + 1) % media.length);
+		}
 	};
 
 	const handlePrev = (e) => {
 		e.stopPropagation();
-		setCurrentIndex((prevIndex) => (prevIndex - 1 + media.length) % media.length);
+		if (media.length > 0) {
+			setCurrentIndex((prevIndex) => (prevIndex - 1 + media.length) % media.length);
+		}
 	};
 
-	const currentMedia = media[currentIndex];
+	useEffect(() => {
+		const handleKeyDown = (e) => {
+			if (e.key === 'ArrowRight') {
+				handleNext(e);
+			} else if (e.key === 'ArrowLeft') {
+				handlePrev(e);
+			} else if (e.key === 'Escape') {
+				onClose();
+			}
+		};
 
-	console.log(currentMedia);
+		document.addEventListener('keydown', handleKeyDown);
+		return () => {
+			document.removeEventListener('keydown', handleKeyDown);
+		};
+	}, [media]);
+
+	if (!isOpen || !Array.isArray(media) || media.length === 0) return null;
+
+	const currentMedia = media[currentIndex];
 	const mediaType = Object.keys(currentMedia).find(
 		(k) => k.includes('image') || k.includes('video')
 	);
 	const mediaUrl = `/assets/images/${normalizeName(photographName)}/${
 		currentMedia.image || currentMedia.video
 	}`;
+
 	return (
 		<div className="lightbox-overlay" onClick={onClose}>
 			<div className="lightbox-box" onClick={(e) => e.stopPropagation()}>
 				<div className="lightbox-side">
-					<FontAwesomeIcon icon={faAngleLeft} onClick={handlePrev} className="lightbox-nav-icon" />
+					<FontAwesomeIcon
+						icon={faAngleLeft}
+						onClick={handlePrev}
+						className="lightbox-nav-icon prev"
+					/>
 				</div>
 				<MediaFactory
 					type={mediaType}
 					url={mediaUrl}
-					title={media.title}
-					likes={media.likes}
+					item={currentMedia}
 					showDescription={false}
 					className="lightbox-media"
 				/>
