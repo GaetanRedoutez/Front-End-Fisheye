@@ -1,14 +1,15 @@
+import { useLocation } from 'react-router-dom';
 import './index.css';
 
 export const Header = () => {
-	const currentPath = window.location.pathname;
+	const location = useLocation();
 
 	return (
 		<div className="Header">
-			<a href="/home">
+			<a href="/">
 				<img src="/assets/images/logo.png" alt="Logo Fisheye" className="header-logo" />
 			</a>
-			{currentPath === '/home' && <div className="header-texte">Nos photographes</div>}
+			{location.pathname === '/' && <div className="header-texte">Nos photographes</div>}
 		</div>
 	);
 };

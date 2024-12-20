@@ -1,4 +1,4 @@
-import { Photographers } from '../../components/Photographers';
+import { Photographers } from '../../components/Home/Photographers';
 import './index.css';
 
 export const HomePage = () => {

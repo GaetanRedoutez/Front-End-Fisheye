@@ -1,0 +1,8 @@
+.photographers-section {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, 350px);
+	justify-content: space-between;
+	gap: 1rem;
+	width: 1240px;
+	margin-top: 50px;
+}
