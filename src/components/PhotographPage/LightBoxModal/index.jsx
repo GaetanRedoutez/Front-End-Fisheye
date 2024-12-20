@@ -62,13 +62,14 @@ export const LightBoxModal = ({
 	}`;
 
 	return (
-		<div className="lightbox-overlay" onClick={onClose}>
+		<div className="lightbox-overlay" onClick={onClose} aria-label="image closeup view">
 			<div className="lightbox-box" onClick={(e) => e.stopPropagation()}>
 				<div className="lightbox-side">
 					<FontAwesomeIcon
 						icon={faAngleLeft}
 						onClick={handlePrev}
 						className="lightbox-nav-icon prev"
+						aria-label="Previous image"
 					/>
 				</div>
 				<MediaFactory
@@ -79,8 +80,18 @@ export const LightBoxModal = ({
 					className="lightbox-media"
 				/>
 				<div className="lightbox-side">
-					<FontAwesomeIcon icon={faX} onClick={onClose} className="lightbox-nav-icon" />
-					<FontAwesomeIcon icon={faAngleRight} onClick={handleNext} className="lightbox-nav-icon" />
+					<FontAwesomeIcon
+						icon={faX}
+						onClick={onClose}
+						className="lightbox-nav-icon"
+						aria-label="Close dialog"
+					/>
+					<FontAwesomeIcon
+						icon={faAngleRight}
+						onClick={handleNext}
+						className="lightbox-nav-icon"
+						aria-label="Next image"
+					/>
 				</div>
 			</div>
 		</div>

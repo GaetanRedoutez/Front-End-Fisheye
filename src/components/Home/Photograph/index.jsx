@@ -5,7 +5,7 @@ import { normalizeName } from '../../../utils/normalizeString';
 export const Photograph = (photograph) => {
 	return (
 		<>
-			<Link to={`/photograph/${photograph.id}`}>
+			<Link to={`/photograph/${photograph.id}`} className="photograph-link">
 				<div className="photograph-img-container">
 					<img
 						src={`/assets/photographers/${normalizeName(photograph.name)}.jpg`}
@@ -14,8 +14,8 @@ export const Photograph = (photograph) => {
 						className="photograph-img"
 					/>
 				</div>
+				<h2 className="photograph-name">{photograph.name}</h2>
 			</Link>
-			<div className="photograph-name">{photograph.name}</div>
 			<div className="photograph-location">
 				{photograph.city}&nbsp;{photograph.country}
 			</div>

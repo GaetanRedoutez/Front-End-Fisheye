@@ -13,7 +13,7 @@ export const SelectDropdown = ({ filter, setFilter }) => {
 	};
 
 	return (
-		<div className="dropdown">
+		<div className="dropdown" aria-label="order-by">
 			<button
 				className="select-dropdown"
 				role="listbox"
