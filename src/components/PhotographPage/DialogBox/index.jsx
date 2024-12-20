@@ -11,9 +11,14 @@ export const DialogBox = ({ isOpen, onClose, photograph }) => {
 			<div className="dialog-box">
 				<div className="dialog-header">
 					<div className="dialog-title">
-						<h1>Contactez-moi</h1>
+						<h2>Contactez-moi</h2>
 						<div className="dialog-close">
-							<FontAwesomeIcon icon={faX} onClick={onClose} className="dialog-close-icon" />
+							<FontAwesomeIcon
+								icon={faX}
+								onClick={onClose}
+								className="dialog-close-icon"
+								aria-label="Close Contact form"
+							/>
 						</div>
 					</div>
 					<div>{photograph.name}</div>

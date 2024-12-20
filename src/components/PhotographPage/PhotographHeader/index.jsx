@@ -21,7 +21,7 @@ export const PhotographHeader = ({ photograph }) => {
 						<p className="photograph-header-tagline">{photograph.tagline}</p>
 					</div>
 				</div>
-				<button className="photograph-header-button" onClick={openDialog}>
+				<button className="photograph-header-button" onClick={openDialog} aria-label="Contact Me">
 					Contactez-moi
 				</button>
 				<div className="photograph-img-container">

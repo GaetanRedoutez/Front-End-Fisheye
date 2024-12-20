@@ -30,7 +30,7 @@ export const ContactForm = () => {
 					<label htmlFor="message">Message</label>
 					<textarea className="form-messsage" name="message" cols="85" rows="10" required />
 				</div>
-				<button type="submit" className="button-form-submit">
+				<button type="submit" className="button-form-submit" aria-label="Send">
 					Envoyer
 				</button>
 			</form>
