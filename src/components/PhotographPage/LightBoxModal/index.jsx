@@ -1,20 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import './index.css';
 import { MediaFactory } from '../PhotographGallery';
 import { normalizeName } from '../../../utils/normalizeString';
 import { faAngleLeft, faAngleRight, faX } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export const LightBoxModal = ({
-	isOpen,
-	onClose,
-	media = [],
-	initialIndex = 0,
-	photographName,
-}) => {
-	const [currentIndex, setCurrentIndex] = useState(initialIndex);
+export const LightBoxModal = ({ isOpen, onClose, media = [], initialIndex, photographName }) => {
+	const [currentIndex, setCurrentIndex] = useState();
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		if (Array.isArray(media) && media.length > 0) {
 			setCurrentIndex(Math.min(initialIndex, media.length - 1));
 		}
@@ -80,12 +74,14 @@ export const LightBoxModal = ({
 					className="lightbox-media"
 				/>
 				<div className="lightbox-side">
-					<FontAwesomeIcon
-						icon={faX}
-						onClick={onClose}
-						className="lightbox-nav-icon"
-						aria-label="Close dialog"
-					/>
+					<div className="lightbox-close">
+						<FontAwesomeIcon
+							icon={faX}
+							onClick={onClose}
+							className="lightbox-nav-icon"
+							aria-label="Close dialog"
+						/>
+					</div>
 					<FontAwesomeIcon
 						icon={faAngleRight}
 						onClick={handleNext}

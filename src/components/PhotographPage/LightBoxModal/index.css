@@ -35,10 +35,6 @@
 	align-items: center;
 	justify-content: center;
 	padding: 10px;
-	/* display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center; */
 }
 
 .lightbox-nav-icon {
@@ -49,4 +45,8 @@
 
 .prev {
 	grid-row-start: 2;
+}
+
+.lightbox-close {
+	height: 100%;
 }

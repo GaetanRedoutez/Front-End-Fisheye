@@ -26,7 +26,7 @@ export const PhotographHeader = ({ photograph }) => {
 				</button>
 				<div className="photograph-img-container">
 					<img
-						src={`/assets/photographers/${normalizeName(photograph.name)}.jpg`}
+						src={`/assets/photographers/${normalizeName(photograph.name)}.webp`}
 						alt={photograph.name}
 						loading="lazy"
 						className="photograph-img"
