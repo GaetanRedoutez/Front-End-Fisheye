@@ -36,8 +36,8 @@
 }
 
 .form-messsage {
-	height: 170px !important;
-	width: 96% !important;
+	height: 170px;
+	width: 96%;
 	border: none;
 	border-radius: 5px;
 	padding: 2%;

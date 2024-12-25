@@ -96,7 +96,7 @@ export const MediaFactory = ({ type, url, item, showDescription, className, open
 
 const ImageMedia = ({ url, item, showDescription, className, openLightBox }) => (
 	<div>
-		<img src={url} alt={item.title} className={className} loading="lazy" onClick={openLightBox} />
+		<img src={url} alt={item.title} className={className} onClick={openLightBox} />
 		{showDescription ? <MediaDescription item={item} /> : <></>}
 	</div>
 );

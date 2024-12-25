@@ -8,7 +8,7 @@ export const Photograph = (photograph) => {
 			<Link to={`/photograph/${photograph.id}`} className="photograph-link">
 				<div className="photograph-img-container">
 					<img
-						src={`/assets/photographers/${normalizeName(photograph.name)}.jpg`}
+						src={`/assets/photographers/${normalizeName(photograph.name)}.webp`}
 						alt={photograph.name}
 						loading="lazy"
 						className="photograph-img"
