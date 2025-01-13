@@ -4,7 +4,7 @@ import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const SelectDropdown = ({ filter, setFilter }) => {
-	const options = ['Popularité', 'Date', 'Prix'];
+	const options = ['Popularité', 'Date', 'Titre'];
 	const [isOpen, setIsOpen] = useState(false);
 
 	const handleSelect = (option) => {

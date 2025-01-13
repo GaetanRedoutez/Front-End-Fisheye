@@ -2,9 +2,10 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useMemo, useState } from 'react';
 import { normalizeName } from '../../../utils/normalizeString';
+import { LightBoxModal } from '../LightBoxModal';
 import { SelectDropdown } from '../SelectDropdown';
 import './index.css';
-import { LightBoxModal } from '../LightBoxModal';
+import { handleClickEnter } from '../../../utils/handleEvent';
 
 export const PhotographGallery = ({ photograph, mediaItems, setTotalLikes, totalLikes }) => {
 	const [filter, setFilter] = useState('Popularité');
@@ -50,7 +51,7 @@ export const PhotographGallery = ({ photograph, mediaItems, setTotalLikes, total
 									showDescription={true}
 									setTotalLikes={setTotalLikes}
 									totalLikes={totalLikes}
-									openLightBox={() => openLightBox(sortedMedia[index].originalIndex)}
+									openLightBox={() => openLightBox(index)}
 									className="gallery-media"
 								/>
 							</article>
@@ -117,16 +118,25 @@ const ImageMedia = ({
 	openLightBox,
 	setTotalLikes,
 	totalLikes,
-}) => (
-	<div>
-		<img src={url} alt={item.title} className={className} onClick={openLightBox} />
-		{showDescription ? (
-			<MediaDescription item={item} setTotalLikes={setTotalLikes} totalLikes={totalLikes} />
-		) : (
-			<></>
-		)}
-	</div>
-);
+}) => {
+	return (
+		<div>
+			<img
+				src={url}
+				alt={item.title}
+				className={className}
+				onClick={(e) => handleClickEnter(e, openLightBox)}
+				onKeyDown={(e) => handleClickEnter(e, openLightBox)}
+				tabIndex={0}
+			/>
+			{showDescription ? (
+				<MediaDescription item={item} setTotalLikes={setTotalLikes} totalLikes={totalLikes} />
+			) : (
+				<></>
+			)}
+		</div>
+	);
+};
 
 const VideoMedia = ({
 	url,
@@ -136,19 +146,28 @@ const VideoMedia = ({
 	openLightBox,
 	setTotalLikes,
 	totalLikes,
-}) => (
-	<div>
-		<video controls className={className} loading="lazy" onClick={openLightBox}>
-			<source src={url} type="video/mp4" />
-			Votre navigateur ne supporte pas les vidéos.
-		</video>
-		{showDescription ? (
-			<MediaDescription item={item} setTotalLikes={setTotalLikes} totalLikes={totalLikes} />
-		) : (
-			<></>
-		)}
-	</div>
-);
+}) => {
+	return (
+		<div>
+			<video
+				controls={!showDescription}
+				tabIndex={0}
+				className={className}
+				loading="lazy"
+				onClick={(e) => handleClickEnter(e, openLightBox)}
+				onKeyDown={(e) => handleClickEnter(e, openLightBox)}
+			>
+				<source src={url} type="video/mp4" />
+				Votre navigateur ne supporte pas les vidéos.
+			</video>
+			{showDescription ? (
+				<MediaDescription item={item} setTotalLikes={setTotalLikes} totalLikes={totalLikes} />
+			) : (
+				<></>
+			)}
+		</div>
+	);
+};
 
 const MediaDescription = ({ item, setTotalLikes, totalLikes }) => {
 	const [likes, setLikes] = useState(item.likes);
@@ -178,8 +197,8 @@ const sortMedia = (media, criteria) => {
 			return media.sort((a, b) => b.likes - a.likes);
 		case 'Date':
 			return media.sort((a, b) => new Date(b.date) - new Date(a.date));
-		case 'Prix':
-			return media.sort((a, b) => b.price - a.price);
+		case 'Titre':
+			return media.sort((a, b) => a.title.localeCompare(b.title));
 		default:
 			return media;
 	}
