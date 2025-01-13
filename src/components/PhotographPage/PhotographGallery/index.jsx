@@ -6,7 +6,7 @@ import { SelectDropdown } from '../SelectDropdown';
 import './index.css';
 import { LightBoxModal } from '../LightBoxModal';
 
-export const PhotographGallery = ({ photograph, mediaItems }) => {
+export const PhotographGallery = ({ photograph, mediaItems, setTotalLikes, totalLikes }) => {
 	const [filter, setFilter] = useState('Popularité');
 	const [lightBoxOpen, setLightBoxOpen] = useState(false);
 	const [lightBoxIndex, setLightBoxIndex] = useState(0);
@@ -48,6 +48,8 @@ export const PhotographGallery = ({ photograph, mediaItems }) => {
 									url={mediaUrl}
 									item={item}
 									showDescription={true}
+									setTotalLikes={setTotalLikes}
+									totalLikes={totalLikes}
 									openLightBox={() => openLightBox(sortedMedia[index].originalIndex)}
 									className="gallery-media"
 								/>
@@ -67,7 +69,16 @@ export const PhotographGallery = ({ photograph, mediaItems }) => {
 	);
 };
 
-export const MediaFactory = ({ type, url, item, showDescription, className, openLightBox }) => {
+export const MediaFactory = ({
+	type,
+	url,
+	item,
+	showDescription,
+	className,
+	openLightBox,
+	setTotalLikes,
+	totalLikes,
+}) => {
 	switch (type) {
 		case 'image':
 			return (
@@ -77,6 +88,8 @@ export const MediaFactory = ({ type, url, item, showDescription, className, open
 					showDescription={showDescription}
 					className={className}
 					openLightBox={openLightBox}
+					setTotalLikes={setTotalLikes}
+					totalLikes={totalLikes}
 				/>
 			);
 		case 'video':
@@ -87,6 +100,8 @@ export const MediaFactory = ({ type, url, item, showDescription, className, open
 					showDescription={showDescription}
 					className={className}
 					openLightBox={openLightBox}
+					setTotalLikes={setTotalLikes}
+					totalLikes={totalLikes}
 				/>
 			);
 		default:
@@ -94,27 +109,54 @@ export const MediaFactory = ({ type, url, item, showDescription, className, open
 	}
 };
 
-const ImageMedia = ({ url, item, showDescription, className, openLightBox }) => (
+const ImageMedia = ({
+	url,
+	item,
+	showDescription,
+	className,
+	openLightBox,
+	setTotalLikes,
+	totalLikes,
+}) => (
 	<div>
 		<img src={url} alt={item.title} className={className} onClick={openLightBox} />
-		{showDescription ? <MediaDescription item={item} /> : <></>}
+		{showDescription ? (
+			<MediaDescription item={item} setTotalLikes={setTotalLikes} totalLikes={totalLikes} />
+		) : (
+			<></>
+		)}
 	</div>
 );
 
-const VideoMedia = ({ url, item, showDescription, className, openLightBox }) => (
+const VideoMedia = ({
+	url,
+	item,
+	showDescription,
+	className,
+	openLightBox,
+	setTotalLikes,
+	totalLikes,
+}) => (
 	<div>
 		<video controls className={className} loading="lazy" onClick={openLightBox}>
 			<source src={url} type="video/mp4" />
 			Votre navigateur ne supporte pas les vidéos.
 		</video>
-		{showDescription ? <MediaDescription item={item} /> : <></>}
+		{showDescription ? (
+			<MediaDescription item={item} setTotalLikes={setTotalLikes} totalLikes={totalLikes} />
+		) : (
+			<></>
+		)}
 	</div>
 );
 
-const MediaDescription = ({ item }) => {
+const MediaDescription = ({ item, setTotalLikes, totalLikes }) => {
 	const [likes, setLikes] = useState(item.likes);
 
-	const handleLike = () => setLikes(likes + 1);
+	const handleLike = () => {
+		setLikes(likes + 1);
+		setTotalLikes(totalLikes + 1);
+	};
 	return (
 		<div className="media-description">
 			<div className="media-description-title">{item.title}</div>

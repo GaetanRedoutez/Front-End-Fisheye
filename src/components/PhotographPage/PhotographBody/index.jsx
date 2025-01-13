@@ -14,6 +14,7 @@ import { PhotographData } from '../PhotographData';
 export const PhotographBody = ({ id }) => {
 	const [photograph, setPhotograph] = useState();
 	const [mediaItems, setMediaItems] = useState();
+	const [totalLikes, setTotalLikes] = useState(0);
 
 	useEffect(() => {
 		const fetch = async () => {
@@ -31,12 +32,16 @@ export const PhotographBody = ({ id }) => {
 
 		!!photograph && fetch();
 	}, [JSON.stringify(photograph)]);
+
+	useEffect(() => {
+		!!mediaItems && setTotalLikes(mediaItems.reduce((acc, item) => acc + item.likes, 0));
+	}, [JSON.stringify(mediaItems)]);
 	return (
 		photograph && (
 			<div className="photograph-container">
 				<PhotographHeader {...{ photograph }} />
-				<PhotographGallery {...{ photograph, mediaItems }} />
-				{mediaItems && <PhotographData {...{ photograph, mediaItems }} />}
+				<PhotographGallery {...{ photograph, mediaItems, setTotalLikes, totalLikes }} />
+				{mediaItems && <PhotographData {...{ photograph, totalLikes }} />}
 			</div>
 		)
 	);

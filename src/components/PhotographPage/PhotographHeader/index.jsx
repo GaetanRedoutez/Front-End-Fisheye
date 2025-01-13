@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { normalizeName } from '../../../utils/normalizeString';
 import './index.css';
 import { DialogBox } from '../DialogBox';
-//TODO MODAL CONTACT
 
 export const PhotographHeader = ({ photograph }) => {
 	const [isDialogOpen, setDialogOpen] = useState(false);
