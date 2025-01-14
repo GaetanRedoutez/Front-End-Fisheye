@@ -1,8 +1,52 @@
-# React + Vite
+# Projet Front-End Fisheye
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
 
-Currently, two official plugins are available:
+Ce projet est une application front-end pour Fisheye, une plateforme qui met en avant des photographes et leurs portfolios. L'application permet aux utilisateurs de parcourir divers photographes, de voir leurs travaux et d'en apprendre davantage sur eux.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Fonctionnalités
+
+- Afficher une liste de photographes
+- Voir les profils individuels des photographes
+- Parcourir les portfolios des photographes
+- Filtrer les photographes par tags
+
+## Technologies Utilisées
+
+- HTML
+- CSS
+- JavaScript
+- React
+
+## Installation
+
+1. Cloner le dépôt :
+
+```bash
+git clone https://github.com/GaetanRedoutez/Front-End-Fisheye.git
+```
+
+2. Naviguer vers le répertoire du projet :
+
+```bash
+cd Front-End-Fisheye
+```
+
+3. Installer le projet
+
+```bash
+yarn
+```
+
+4. Démarrer le projet
+
+```bash
+yarn dev
+```
+
+## Utilisation
+
+- Ouvrir l'application dans votre navigateur web.
+- Parcourir la liste des photographes.
+- Cliquer sur un photographe pour voir son profil et son portfolio.
+- Utiliser les options de filtrage pour affiner la liste des photographes.
