@@ -3,6 +3,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './index.css';
 import { ContactForm } from '../ContactForm';
 
+/**
+ * DialogBox component
+ *
+ * @param {Object} props - Component props
+ * @param {boolean} props.isOpen - Determines if the dialog is open
+ * @param {Function} props.onClose - Function to close the dialog
+ * @param {Object} props.photograph - Photograph details
+ * @returns {JSX.Element|null} The DialogBox component
+ */
 export const DialogBox = ({ isOpen, onClose, photograph }) => {
 	if (!isOpen) return null;
 

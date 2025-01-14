@@ -1,3 +1,9 @@
+/**
+ * Component to display a list of photographers.
+ * Fetches data from API and renders each photographer.
+ *
+ * @component
+ */
 import { useEffect, useState } from 'react';
 import { Photograph } from '../Photograph';
 import { getPhotographers } from '../../../api/service/photographers.service';

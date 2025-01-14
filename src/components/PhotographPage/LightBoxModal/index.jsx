@@ -5,6 +5,17 @@ import { normalizeName } from '../../../utils/normalizeString';
 import { faAngleLeft, faAngleRight, faX } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+/**
+ * LightBoxModal component
+ *
+ * @param {Object} props - Component props
+ * @param {boolean} props.isOpen - Determines if the lightbox is open
+ * @param {Function} props.onClose - Function to close the lightbox
+ * @param {Array} props.media - Array of media items to display
+ * @param {number} props.initialIndex - Initial index of the media to display
+ * @param {string} props.photographName - Name of the photograph
+ * @returns {JSX.Element|null} The LightBoxModal component
+ */
 export const LightBoxModal = ({ isOpen, onClose, media = [], initialIndex, photographName }) => {
 	const [currentIndex, setCurrentIndex] = useState();
 

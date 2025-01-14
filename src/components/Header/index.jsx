@@ -1,3 +1,7 @@
+/**
+ * Header component that displays the logo and a text based on the current route.
+ * @component
+ */
 import { useLocation } from 'react-router-dom';
 import './index.css';
 

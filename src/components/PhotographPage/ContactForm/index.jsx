@@ -1,3 +1,7 @@
+/**
+ * ContactForm component handles form submission and logs form data.
+ * @component
+ */
 import './index.css';
 
 export const ContactForm = () => {

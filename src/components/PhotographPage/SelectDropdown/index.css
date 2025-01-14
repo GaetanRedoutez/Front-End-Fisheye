@@ -37,8 +37,17 @@
 }
 
 .dropdown-option {
-	padding: 10px 15px;
+	padding: 0 15px 0 15px;
 	font-size: 18px;
 	font-weight: 500;
 	cursor: pointer;
+}
+
+.dropdown-option-title {
+	padding: 10px 0 10px 0;
+}
+
+.first-option {
+	border-bottom: 1px solid #ffffff;
+	border-top: 1px solid #ffffff;
 }
