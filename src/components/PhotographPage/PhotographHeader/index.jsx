@@ -3,6 +3,18 @@ import { normalizeName } from '../../../utils/normalizeString';
 import './index.css';
 import { DialogBox } from '../DialogBox';
 
+/**
+ * Component for displaying the header of a photograph page.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {Object} props.photograph - The photograph data.
+ * @param {string} props.photograph.name - The name of the photographer.
+ * @param {string} props.photograph.city - The city of the photographer.
+ * @param {string} props.photograph.country - The country of the photographer.
+ * @param {string} props.photograph.tagline - The tagline of the photographer.
+ * @returns {JSX.Element} The rendered component.
+ */
 export const PhotographHeader = ({ photograph }) => {
 	const [isDialogOpen, setDialogOpen] = useState(false);
 

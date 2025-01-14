@@ -3,6 +3,15 @@ import './index.css';
 import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+/**
+ * SelectDropdown component for filtering photographs by different criteria.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {string} props.filter - The current filter option.
+ * @param {Function} props.setFilter - Function to set the selected filter option.
+ * @returns {JSX.Element} The rendered SelectDropdown component.
+ */
 export const SelectDropdown = ({ filter, setFilter }) => {
 	const options = ['Popularité', 'Date', 'Titre'];
 	const [isOpen, setIsOpen] = useState(false);

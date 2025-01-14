@@ -9,7 +9,11 @@ import { PhotographGallery } from '../PhotographGallery';
 import { PhotographData } from '../PhotographData';
 
 /**
- * @param {number} id - The ID of the photograph
+ * PhotographBody component
+ *
+ * @param {Object} props - Component props
+ * @param {number} props.id - The ID of the photograph
+ * @returns {JSX.Element|null} The PhotographBody component
  */
 export const PhotographBody = ({ id }) => {
 	const [photograph, setPhotograph] = useState();

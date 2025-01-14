@@ -7,6 +7,17 @@ import { SelectDropdown } from '../SelectDropdown';
 import './index.css';
 import { handleClickEnter } from '../../../utils/handleEvent';
 
+/**
+ * Component for displaying a gallery of photographs.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {Object} props.photograph - The photograph object.
+ * @param {Array} props.mediaItems - The list of media items.
+ * @param {Function} props.setTotalLikes - Function to set the total likes.
+ * @param {number} props.totalLikes - The total number of likes.
+ * @returns {JSX.Element} The PhotographGallery component.
+ */
 export const PhotographGallery = ({ photograph, mediaItems, setTotalLikes, totalLikes }) => {
 	const [filter, setFilter] = useState('Popularité');
 	const [lightBoxOpen, setLightBoxOpen] = useState(false);
@@ -70,6 +81,21 @@ export const PhotographGallery = ({ photograph, mediaItems, setTotalLikes, total
 	);
 };
 
+/**
+ * Factory component for rendering media based on type.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {string} props.type - The type of media (image or video).
+ * @param {string} props.url - The URL of the media.
+ * @param {Object} props.item - The media item object.
+ * @param {boolean} props.showDescription - Flag to show description.
+ * @param {string} props.className - The CSS class name.
+ * @param {Function} props.openLightBox - Function to open the lightbox.
+ * @param {Function} props.setTotalLikes - Function to set the total likes.
+ * @param {number} props.totalLikes - The total number of likes.
+ * @returns {JSX.Element} The MediaFactory component.
+ */
 export const MediaFactory = ({
 	type,
 	url,
@@ -110,6 +136,20 @@ export const MediaFactory = ({
 	}
 };
 
+/**
+ * Component for rendering an image media item.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {string} props.url - The URL of the image.
+ * @param {Object} props.item - The media item object.
+ * @param {boolean} props.showDescription - Flag to show description.
+ * @param {string} props.className - The CSS class name.
+ * @param {Function} props.openLightBox - Function to open the lightbox.
+ * @param {Function} props.setTotalLikes - Function to set the total likes.
+ * @param {number} props.totalLikes - The total number of likes.
+ * @returns {JSX.Element} The ImageMedia component.
+ */
 const ImageMedia = ({
 	url,
 	item,
@@ -138,6 +178,20 @@ const ImageMedia = ({
 	);
 };
 
+/**
+ * Component for rendering a video media item.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {string} props.url - The URL of the video.
+ * @param {Object} props.item - The media item object.
+ * @param {boolean} props.showDescription - Flag to show description.
+ * @param {string} props.className - The CSS class name.
+ * @param {Function} props.openLightBox - Function to open the lightbox.
+ * @param {Function} props.setTotalLikes - Function to set the total likes.
+ * @param {number} props.totalLikes - The total number of likes.
+ * @returns {JSX.Element} The VideoMedia component.
+ */
 const VideoMedia = ({
 	url,
 	item,
@@ -169,6 +223,16 @@ const VideoMedia = ({
 	);
 };
 
+/**
+ * Component for rendering the description of a media item.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {Object} props.item - The media item object.
+ * @param {Function} props.setTotalLikes - Function to set the total likes.
+ * @param {number} props.totalLikes - The total number of likes.
+ * @returns {JSX.Element} The MediaDescription component.
+ */
 const MediaDescription = ({ item, setTotalLikes, totalLikes }) => {
 	const [likes, setLikes] = useState(item.likes);
 
@@ -187,6 +251,13 @@ const MediaDescription = ({ item, setTotalLikes, totalLikes }) => {
 	);
 };
 
+/**
+ * Function to sort media items based on criteria.
+ *
+ * @param {Array} media - The list of media items.
+ * @param {string} criteria - The sorting criteria (Popularité, Date, Titre).
+ * @returns {Array} The sorted list of media items.
+ */
 const sortMedia = (media, criteria) => {
 	if (!Array.isArray(media)) {
 		return [];

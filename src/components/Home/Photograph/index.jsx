@@ -1,3 +1,15 @@
+/**
+ * Component to display a photograph's details.
+ *
+ * @param {Object} photograph - The photograph data.
+ * @param {string} photograph.id - The photograph's ID.
+ * @param {string} photograph.name - The photograph's name.
+ * @param {string} photograph.city - The photograph's city.
+ * @param {string} photograph.country - The photograph's country.
+ * @param {string} photograph.tagline - The photograph's tagline.
+ * @param {number} photograph.price - The photograph's price per day.
+ * @component
+ */
 import { Link } from 'react-router-dom';
 import './index.css';
 import { normalizeName } from '../../../utils/normalizeString';
