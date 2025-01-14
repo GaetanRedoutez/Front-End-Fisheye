@@ -29,16 +29,20 @@ export const SelectDropdown = ({ filter, setFilter }) => {
 				<ul className="dropdown-options" role="listbox">
 					{options
 						.filter((option) => option !== filter)
-						.map((option) => (
-							<li
-								key={option}
-								className="dropdown-option"
-								role="option"
-								onClick={() => handleSelect(option)}
-							>
-								{option}
-							</li>
-						))}
+						.map((option, index) => {
+							const className =
+								index === 0 ? 'dropdown-option-title first-option' : 'dropdown-option-title';
+							return (
+								<li
+									key={option}
+									className="dropdown-option"
+									role="option"
+									onClick={() => handleSelect(option)}
+								>
+									<div className={className}>{option}</div>
+								</li>
+							);
+						})}
 				</ul>
 			)}
 		</div>
